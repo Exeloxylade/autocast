@@ -1,0 +1,23 @@
+{
+  "name": "autocast",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Self-hosted auto upload + 24/7 multi-live for YouTube, TikTok, Instagram, Facebook and RTMP.",
+  "main": "server.js",
+  "type": "commonjs",
+  "engines": { "node": ">=22.5" },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/unit.test.js",
+    "test:upload": "node test/upload.e2e.js",
+    "test:live": "node test/live.e2e.js",
+    "test:features": "node test/features.e2e.js",
+    "test:ai": "node test/ai.e2e.js",
+    "test:all": "npm test && npm run test:upload && npm run test:live && npm run test:features && npm run test:ai",
+    "demo": "node test/demo.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "multer": "^2.0.2"
+  }
+}

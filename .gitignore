@@ -1,0 +1,24 @@
+# dependencies
+node_modules/
+
+# runtime data: database, videos, tokens, recordings
+data/
+app/data/
+
+# secrets — never commit
+.env
+*.env.local
+*.key
+*.pem
+*.crt
+*.p12
+secret.key
+
+# logs and OS junk
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# push script state on your PC
+.autocast-sent.json

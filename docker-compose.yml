@@ -1,0 +1,46 @@
+# AutoCast on a VPS.
+#   1. cp .env.example .env   (set PUBLIC_URL and AUTOCAST_SECRET)
+#   2. docker compose up -d --build
+#   3. HTTPS: either your existing nginx/Caddy -> 127.0.0.1:7676,
+#      or the bundled Caddy:  docker compose --profile caddy up -d
+services:
+  autocast:
+    build: ./app
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 7676
+      AUTOCAST_DATA: /data
+      RELAY_URL: rtmp://relay:1935
+    volumes:
+      - ./data:/data                 # database, videos, prepared files, watch folders
+    ports:
+      - "127.0.0.1:7676:7676"        # only reachable from the VPS itself; HTTPS proxy in front
+    depends_on: [relay]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # reach AI services (Ollama, OmniRoute) running on the VPS itself
+    deploy:
+      resources:
+        limits: { memory: 2g }
+
+  # Internal stream hub. Not exposed to the internet.
+  relay:
+    image: bluenviron/mediamtx:1
+    restart: unless-stopped
+    volumes:
+      - ./mediamtx.yml:/mediamtx.yml:ro
+
+  # Optional HTTPS front door (skip it if the VPS already runs nginx or Caddy).
+  caddy:
+    image: caddy:2
+    profiles: [caddy]
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+    depends_on: [autocast]
+
+volumes:
+  caddy_data:

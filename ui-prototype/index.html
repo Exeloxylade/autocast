@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AutoCast</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-space="upload">
+<div class="app">
+  <aside class="side">
+    <div class="brand"><span class="logo">◆</span> AutoCast</div>
+
+    <div class="space-switch" role="tablist">
+      <button data-go="upload/overview" class="sp sp-upload">
+        <span class="sp-ico">⬆</span><span><b>Auto Upload</b><small>Posts &amp; schedule</small></span>
+      </button>
+      <button data-go="live/stations" class="sp sp-live">
+        <span class="sp-ico">●</span><span><b>Auto Live</b><small>24/7 streams</small></span>
+      </button>
+    </div>
+
+    <nav class="nav" id="nav-upload">
+      <div class="nav-h">Auto Upload</div>
+      <a data-go="upload/overview"><i>▦</i>Overview</a>
+      <a data-go="upload/create"><i>＋</i>Create post</a>
+      <a data-go="upload/calendar"><i>▤</i>Calendar</a>
+      <a data-go="upload/autopilot"><i>⟳</i>Autopilot rules <em>3</em></a>
+      <a data-go="upload/library"><i>▣</i>Media library</a>
+    </nav>
+
+    <nav class="nav" id="nav-live">
+      <div class="nav-h">Auto Live</div>
+      <a data-go="live/stations"><i>▦</i>Stations</a>
+      <a data-go="live/control"><i>◉</i>Control room <em class="red">LIVE</em></a>
+      <a data-go="live/new"><i>＋</i>New station</a>
+      <a data-go="live/sources"><i>▶</i>Sources &amp; playlists</a>
+      <a data-go="live/schedule"><i>▤</i>Schedule</a>
+    </nav>
+
+    <nav class="nav nav-shared">
+      <div class="nav-h">Shared</div>
+      <a data-go="shared/accounts"><i>◎</i>Accounts <em class="warn">1</em></a>
+      <a data-go="shared/settings"><i>⚙</i>Settings</a>
+    </nav>
+
+    <div class="side-foot">
+      <div class="vps"><span class="dot ok"></span>VPS · 4 cores · 38% CPU</div>
+      <div class="bar"><span style="width:38%"></span></div>
+      <div class="vps muted">Data this month 1.2 / 4 TB</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <div class="crumbs" id="crumbs"></div>
+      <div class="top-r">
+        <div class="search">⌕ <input placeholder="Search posts, stations, accounts"></div>
+        <button class="icon-btn" title="Alerts">🔔<span class="pip"></span></button>
+        <div class="avatar">A</div>
+      </div>
+    </header>
+    <section class="view" id="view"></section>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

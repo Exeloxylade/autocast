@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AutoCast</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g'><stop offset='0' stop-color='%237c6cff'/><stop offset='1' stop-color='%23ff4d5e'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='url(%23g)'/><path d='M16 8l8 8-8 8-8-8z' fill='white'/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-space="upload">
+<div class="app" id="app" hidden>
+  <aside class="side">
+    <div class="brand"><span class="logo">◆</span> AutoCast</div>
+    <div class="space-switch">
+      <button data-go="upload/overview" class="sp sp-upload"><span class="sp-ico">⬆</span><span><b>Auto Upload</b><small>Posts &amp; schedule</small></span></button>
+      <button data-go="live/stations" class="sp sp-live"><span class="sp-ico">●</span><span><b>Auto Live</b><small>24/7 streams</small></span></button>
+    </div>
+    <nav class="nav" id="nav-upload">
+      <div class="nav-h">Auto Upload</div>
+      <a data-go="upload/overview"><i>▦</i>Overview</a>
+      <a data-go="upload/create"><i>＋</i>Create post</a>
+      <a data-go="upload/calendar"><i>▤</i>Calendar</a>
+      <a data-go="upload/posts"><i>≡</i>All posts <em id="c-failed" hidden></em></a>
+      <a data-go="upload/autopilot"><i>⟳</i>Autopilot rules <em id="c-rules" hidden></em></a>
+      <a data-go="upload/library"><i>▣</i>Media library</a>
+    </nav>
+    <nav class="nav" id="nav-live">
+      <div class="nav-h">Auto Live</div>
+      <a data-go="live/stations"><i>▦</i>Stations <em id="c-live" class="red" hidden>LIVE</em></a>
+      <a data-go="live/new"><i>＋</i>New station</a>
+      <a data-go="live/playlists"><i>▶</i>Playlists</a>
+      <a data-go="live/schedule"><i>▤</i>Schedule</a>
+      <a data-go="live/library"><i>▣</i>Media library</a>
+    </nav>
+    <nav class="nav nav-shared">
+      <div class="nav-h">Shared</div>
+      <a data-go="shared/accounts"><i>◎</i>Accounts <em id="c-acc" class="warn" hidden></em></a>
+      <a data-go="shared/activity"><i>☰</i>Activity log</a>
+      <a data-go="shared/settings"><i>⚙</i>Settings</a>
+    </nav>
+    <div class="side-foot" id="sysbox">
+      <div class="vps"><span class="dot"></span>Checking server…</div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="top">
+      <div class="crumbs" id="crumbs"></div>
+      <div class="top-r">
+        <button class="theme-btn" id="theme" title="Light / dark">☀</button>
+        <button class="btn sm ghost" id="logout" title="Log out">⎋ Log out</button>
+      </div>
+    </header>
+    <section class="view" id="view"></section>
+  </main>
+</div>
+<div class="gate" id="gate" hidden></div>
+<div class="toasts" id="toasts"></div>
+<script src="app.js"></script>
+</body>
+</html>

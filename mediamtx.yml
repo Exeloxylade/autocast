@@ -1,0 +1,14 @@
+# Internal relay for AutoCast. Only RTMP, only inside the Docker network.
+logLevel: warn
+rtmp: yes
+rtmpAddress: :1935
+rtsp: no
+hls: no
+webrtc: no
+srt: no
+api: no
+metrics: no
+pprof: no
+playback: no
+paths:
+  all_others:

@@ -1,0 +1,36 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: FFmpeg and fonts
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-dejavu-core
+      - name: MediaMTX relay
+        run: |
+          url=$(curl -s https://api.github.com/repos/bluenviron/mediamtx/releases/latest | grep -o 'https://[^"]*linux_amd64.tar.gz' | head -1)
+          curl -sL "$url" | tar xz -C "$RUNNER_TEMP" mediamtx
+          echo "MEDIAMTX=$RUNNER_TEMP/mediamtx" >> "$GITHUB_ENV"
+      - run: npm ci
+      - name: Unit
+        run: npm test
+      - name: Upload
+        run: node test/upload.e2e.js
+      - name: Live
+        run: node test/live.e2e.js
+      - name: Features
+        run: node test/features.e2e.js
+      - name: AI
+        run: node test/ai.e2e.js

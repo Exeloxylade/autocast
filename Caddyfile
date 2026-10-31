@@ -1,0 +1,8 @@
+# Change the domain. Point its DNS A record to your VPS IP first.
+cast.example.com {
+	encode gzip
+	request_body {
+		max_size 8GB
+	}
+	reverse_proxy autocast:7676
+}
