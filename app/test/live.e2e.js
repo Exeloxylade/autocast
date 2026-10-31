@@ -129,6 +129,7 @@ const H = require('./helpers');
     await H.sleep(1000);
     H.check('switch back to manual + stop', !engine.state.has(st));
     ok = H.summary();
+    if (!ok) for (const e of (await api.get('/api/events?area=live&limit=40')).reverse()) console.log('   ev', e.level, e.msg.slice(0, 300));
   } catch (e) {
     console.error('ERROR', e.message);
     H.summary();
